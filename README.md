@@ -1,11 +1,11 @@
-# Gravothermal Evolution of Self-Interacting Dark Matter Halos with Static Plummer Baryonic Potential
+# Gravothermal Evolution of Self-Interacting Dark Matter Halos with Static Central Baryonic Potentials
 
-This repository contains two programs that together create and evolve spherically symmetric, non-rotating, gravothermally conducting fluid halos. If this code contributes to your research, please cite [Feng, Yu, and Zhong (2025)](https://arxiv.org/abs/2506.xxxxx) [![](https://img.shields.io/badge/arXiv-2506.12345-red)](https://arxiv.org/abs/2506.xxxxx). If you have any questions in running the code, please [contact me](mailto:yiming.zhong@cityu.edu.hk).
+This repository contains two programs that together create and evolve spherically symmetric, non-rotating, gravothermally conducting fluid halos. If this code contributes to your research, please cite [Feng, Yu, & Zhong (2025)](https://arxiv.org/abs/2506.xxxxx) [![](https://img.shields.io/badge/arXiv-2506.xxxxx-red)](https://arxiv.org/abs/2506.xxxxx). If you have any questions in running the code, please [contact me](mailto:yiming.zhong@cityu.edu.hk).
 
 | File            | Language | Purpose                                                                                                   |
 |-----------------|----------|-----------------------------------------------------------------------------------------------------------|
 | `initialize.py` | Python   | Generates the initial NFW self-interacting dark matter (SIDM) under a Plummer baryonic potential and exports radius, density, mass, energy, and luminosity of SIDM as plain text. |
-| `evolution.cpp` | C++   | Integrates the SIDM profiles forward in time, solving conduction and hydrostatic relaxation  under the static baryonic potential.          |
+| `evolution.cpp` | C++   | Integrates the SIDM profiles forward in time, solving conduction and hydrostatic relaxation under the static baryonic potential.          |
 
 ---
 
@@ -13,7 +13,7 @@ This repository contains two programs that together create and evolve sphericall
 
 ### 1.1 Compile requirements
 * **Python ≥ 3.8** with `mpmath`, `numpy`, and `matplotlib`.
-* **C++ 17** compiler (tested with **GCC 12** and **Intel ICC 2020**) plus **Eigen 3** headers.  
+* **C++ 17** compiler plus `Eigen3` headers.  
 
 ### 1.2  Generate initial conditions
 ```bash
@@ -70,5 +70,5 @@ The output txt file includes (1) the header part: records all the simulation set
 ---
 
 ## 4. Reference
-Details of the impelementation can be found in Appendix B of [Zhong, Yang, and Yu (2023)](https://arxiv.org/abs/2306.08028).
+Details of the impelementation can be found in Appendix B of [Zhong, Yang, & Yu (2023)](https://arxiv.org/abs/2306.08028).
 
