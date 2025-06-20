@@ -61,20 +61,20 @@ The program will write time series data to `output/result_<tag>.txt`.
 ```
 initial/
   <tag>/            
-    RList-<tag>.txt      # Radial positions
+    RList-<tag>.txt      # Radii of the Lagrangian zones
     MList-<tag>.txt      # Enclosed masses
-    RhoList-<tag>.txt    # Density profiles
-    uList-<tag>.txt      # Specific internal energies
-    LList-<tag>.txt      # Luminosity profiles
+    RhoList-<tag>.txt    # Densities
+    uList-<tag>.txt      # Specific kinetic energies
+    LList-<tag>.txt      # Luminosities
     Basic-<tag>.txt      # Basic parameters
-    profile.pdf          # Visualization
+    profile.pdf          # Visualization of profiles
 output/
   result_<tag>.txt       # Complete time evolution data
 ```
 
 The output file contains:
 1. **Header**: All simulation parameters and setup information,
-2. **Body**: Time series data including evolution time, step number, and the radii, densities, enclosed masses, specific internal energies, and luminosities of all SIDM Lagrangian zones at each time step.
+2. **Body**: Time series data including evolution time, step number, and the radii, densities, enclosed masses, specific kinetic energies, and luminosities of all SIDM Lagrangian zones at each time step.
 
 ---
 
