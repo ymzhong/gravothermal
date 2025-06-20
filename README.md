@@ -88,4 +88,4 @@ The output file contains:
 
 ## 4. References
 
-For implementation details, please refer to Appendix B of [Zhong, Yang, & Yu (2023)](https://arxiv.org/abs/2306.08028).
+For implementation details, please refer to Appendix B of [Zhong, Yang, & Yu (2023)](https://arxiv.org/abs/2306.08028). The implementation is based on [Pollack (2012)](https://inspirehep.net/files/f80416c2eaf8c69c788a20d4c24a5554).
