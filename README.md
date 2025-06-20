@@ -1,74 +1,91 @@
 # Gravothermal Evolution of Self-Interacting Dark Matter Halos with Static Central Baryonic Potentials
 
-This repository contains two programs that together create and evolve spherically symmetric, non-rotating, gravothermally conducting fluid halos. If this code contributes to your research, please cite [Feng, Yu, & Zhong (2025)](https://arxiv.org/abs/2506.xxxxx) [![](https://img.shields.io/badge/arXiv-2506.xxxxx-red)](https://arxiv.org/abs/2506.xxxxx). If you have any questions in running the code, please [contact me](mailto:yiming.zhong@cityu.edu.hk).
+This repository provides two programs that work together to create and evolve spherically symmetric, non-rotating, gravothermally conducting fluid halos. If this code contributes to your research, please cite [Feng, Yu, & Zhong (2025)](https://arxiv.org/abs/2506.xxxxx) [![](https://img.shields.io/badge/arXiv-2506.xxxxx-red)](https://arxiv.org/abs/2506.xxxxx). For questions about running the code, please [contact me](mailto:yiming.zhong@cityu.edu.hk).
 
 | File            | Language | Purpose                                                                                                   |
 |-----------------|----------|-----------------------------------------------------------------------------------------------------------|
-| `initialize.py` | Python   | Generates the initial NFW self-interacting dark matter (SIDM) under a Plummer baryonic potential and exports radius, density, mass, energy, and luminosity of SIDM as plain text. |
-| `evolution.cpp` | C++   | Integrates the SIDM profiles forward in time, solving conduction and hydrostatic relaxation under the static baryonic potential.          |
+| `initialize.py` | Python   | Generates initial NFW self-interacting dark matter (SIDM) profiles under a Plummer baryonic potential and exports radius, density, mass, energy, and luminosity data as plain text files. |
+| `evolution.cpp` | C++      | Evolves SIDM profiles forward in time by solving conduction and hydrostatic relaxation equations under the static baryonic potential. |
 
 ---
 
 ## 1. Quick Start
 
-### 1.1 Compile requirements
-* **Python ≥ 3.8** with `mpmath`, `numpy`, and `matplotlib`.
-* **C++ 17** compiler plus `Eigen3` headers.  
+### 1.1 Prerequisites
+* **Python ≥ 3.8** with `mpmath`, `numpy`, and `matplotlib`
+* **C++ 17** compiler with `Eigen3` headers
 
-### 1.2  Generate initial conditions
-```bash
-python initialize.py     
-# with setup
-# base_path            where tables will be placed
+### 1.2 Generating Initial Conditions
+
+Configure the following parameters in `initialize.py`:
+```python
+# base_path            Output directory for profiles
 # mass_norm            M_b / (4 π ρ_s r_s³)
 # scale_norm           Plummer scale radius a / r_s
 # sigma                (σ/m) ρ_s r_s
-# tag                  label for the realisation
+# tag                  Label for this realization
 ```
-All output profiles appear in `output/initial/<tag>/`, and a PDF plot with all the profiles is saved in the same directory.
 
-### 1.3  Build and run the C++ solver
+Then generate the SIDM profiles:
 ```bash
-# Example using GCC
+python initialize.py
+```
+
+All output profiles will be saved to `base_path/initial/<tag>/`, including a PDF visualization of the profiles.
+
+### 1.3 Building and Running the Evolution Solver
+
+First, update the following parameters in `evolution.cpp` to match your initial conditions:
+- `inputDir` and `tag` to match the Python output path
+- `sigma`, `mass_norm`, and `scale_norm` to match the initial profile parameters
+
+Compile the C++ code:
+```bash
+# Using GCC
 g++ -O3 -std=c++17 -I/path/to/eigen evolution.cpp -o evolve
 
-# or Intel
+# Or using Intel compiler
 icc -Ofast -std=c++17 -I/path/to/eigen evolution.cpp -o evolve
 ```
-The executable reads the profile files created in **Step 1.2** (edit the `inputDir`, `sigma`, `mass_norm`, `scale_norm`, and `tag` members of `SimulationParameters` if your paths or paramters differ) and writes `result_<tag>.txt` to `output/` by default.
 
-Run it:
+Run the evolution:
 ```bash
 ./evolve
 ```
 
+The program will write time series data to `output/result_<tag>.txt`.
+
 ---
 
-## 2. Directory Layout
+## 2. Directory Structure
 ```
 initial/
   <tag>/            
-    RList-<tag>.txt
-    MList-<tag>.txt
-    RhoList-<tag>.txt
-    uList-<tag>.txt
-    LList-<tag>.txt
-    Basic-<tag>.txt
-    profile.pdf
+    RList-<tag>.txt      # Radial positions
+    MList-<tag>.txt      # Enclosed masses
+    RhoList-<tag>.txt    # Density profiles
+    uList-<tag>.txt      # Specific internal energies
+    LList-<tag>.txt      # Luminosity profiles
+    Basic-<tag>.txt      # Basic parameters
+    profile.pdf          # Visualization
 output/
-  result_<tag>.txt  # full time series appended by evolve
+  result_<tag>.txt       # Complete time evolution data
 ```
-The output txt file includes (1) the header part: records all the simulation setup information and (2)the body part: records `evolution time`, `evolution step` and `radii`, `densities`, `enclosed masses`, ` specific internal energies`, `luminosities` of the SIDM Lagrangian zons for all the conduction-relaxation steps.
+
+The output file contains:
+1. **Header**: All simulation parameters and setup information,
+2. **Body**: Time series data including evolution time, step number, and the radii, densities, enclosed masses, specific internal energies, and luminosities of all SIDM Lagrangian zones at each time step.
 
 ---
 
-## 3. Options
-* **Verbose diagnostics** – instantiate `Logger logger(true)` in `main()`.  
-* **More frequent snapshots** – decrease `DEFAULT_SAVE_STEPS`.  The output file becomes larger.
-* **Alternative baryon models** – switch to `MbaryonH` (Hernquist) or `MbaryonSPL` (power-law) inside `updateProfiles()`.
+## 3. Configuration Options
+
+* **Enable verbose diagnostics**: Set `Logger logger(true)` in `main()`
+* **Increase snapshot frequency**: Decrease `DEFAULT_SAVE_STEPS` (note: this will increase output file size)
+* **Use alternative baryon models**: Replace the default Plummer model with `MbaryonH` (Hernquist) or `MbaryonSPL` (power-law) in the `updateProfiles()` function
 
 ---
 
-## 4. Reference
-Details of the impelementation can be found in Appendix B of [Zhong, Yang, & Yu (2023)](https://arxiv.org/abs/2306.08028).
+## 4. References
 
+For implementation details, please refer to Appendix B of [Zhong, Yang, & Yu (2023)](https://arxiv.org/abs/2306.08028).
