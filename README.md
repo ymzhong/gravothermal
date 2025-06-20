@@ -35,7 +35,7 @@ g++ -O3 -std=c++17 -I/path/to/eigen evolution.cpp -o evolve
 # or Intel
 icc -Ofast -std=c++17 -I/path/to/eigen evolution.cpp -o evolve
 ```
-The executable reads the profile files created in **Step 1** (edit the `inputDir`, `sigma`, `mass_norm`, `scale_norm`, and `tag` members of `SimulationParameters` if your paths or paramters differ) and writes `result_<tag>.txt` to `output/` by default.
+The executable reads the profile files created in **Step 1.2** (edit the `inputDir`, `sigma`, `mass_norm`, `scale_norm`, and `tag` members of `SimulationParameters` if your paths or paramters differ) and writes `result_<tag>.txt` to `output/` by default.
 
 Run it:
 ```bash
@@ -47,16 +47,16 @@ Run it:
 ## 2. Directory Layout
 ```
 initial/
-  2025xxxx/            # tag chosen in Step 1
-    RList-2025xxxxx.txt
-    MList-2025xxxxx.txt
-    RhoList-2025xxxxx.txt
-    uList-2025xxxxx.txt
-    LList-2025xxxxx.txt
-    Basic-2025xxxxx.txt
+  <tag>/            
+    RList-<tag>.txt
+    MList-<tag>.txt
+    RhoList-<tag>.txt
+    uList-<tag>.txt
+    LList-<tag>.txt
+    Basic-<tag>.txt
     profile.pdf
 output/
-  result_2025xxxx.txt  # full time series appended by evolve
+  result_<tag>.txt  # full time series appended by evolve
 ```
 The output txt file includes (1) the header part: records all the simulation setup information and (2)the body part: records `evolution time`, `evolution step` and `radii`, `densities`, `enclosed masses`, ` specific internal energies`, `luminosities` of the SIDM Lagrangian zons for all the conduction-relaxation steps.
 
