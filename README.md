@@ -1,6 +1,6 @@
 # Gravothermal Evolution of Self-Interacting Dark Matter Halos with Static Central Baryonic Potentials
 
-This repository provides two programs that work together to create and evolve spherically symmetric, non-rotating, gravothermally conducting fluid halos. If this code contributes to your research, please cite [Feng, Yu, & Zhong (2025)](https://arxiv.org/abs/2506.xxxxx) [![](https://img.shields.io/badge/arXiv-2506.xxxxx-red)](https://arxiv.org/abs/2506.xxxxx). For questions about running the code, please [contact me](mailto:yiming.zhong@cityu.edu.hk).
+This repository provides two programs that work together to create and evolve spherically symmetric, non-rotating, gravothermally conducting fluid halos. If this code contributes to your research, please cite [Feng, Yu, & Zhong (2025)](https://arxiv.org/abs/2506.17641) [![](https://img.shields.io/badge/arXiv-2506.17641-red)](https://arxiv.org/abs/2506.17641). For questions about running the code, please [contact me](mailto:yiming.zhong@cityu.edu.hk).
 
 | File            | Language | Purpose                                                                                                   |
 |-----------------|----------|-----------------------------------------------------------------------------------------------------------|
