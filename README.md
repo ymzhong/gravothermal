@@ -82,7 +82,7 @@ The output file contains:
 
 * **Enable verbose diagnostics**: Set `Logger logger(true)` in `main()`
 * **Increase snapshot frequency**: Decrease `DEFAULT_SAVE_STEPS` (note: this will increase output file size)
-* **Use alternative baryon models**: Replace the default Plummer model with `MbaryonH` (Hernquist) or `MbaryonSPL` (power-law) in the `updateProfiles()` function
+* **Use alternative baryon models**: Replace the default Plummer model with `MbaryonH` (Hernquist) or `MbaryonSPL` (power-law) in the `updateProfiles()` function. Setting Mb=0 for a pure SIDM halo evolution.
 
 ---
 
